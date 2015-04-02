@@ -3,7 +3,23 @@
 	"contentVersion": "1.0.0.0",
 	"parameters": {
 		"newStorageAccountName": {
-			"type": "string"
+			"type": "string",
+			 "metadata": { 
+         		"Description": "The name of the new storage account created to store the VMs disks" 
+	     	},
+	     	"defaultValue":"New Storage Account Name"
+	    },
+		"storageAccountType": {
+			"type": "string",
+			"allowedValues": [
+				"Standard_LRS",
+				"Standard_GRS",
+				"Standard_ZRS"        
+			],
+			"metadata": { 
+         		"Description": "The type of the Storage Account created" 
+	     	},
+	     	"defaultValue":"Standard_LRS"
 		},
 		"deploymentLocation": {
 			"type": "string",
@@ -13,52 +29,90 @@
 				"West Europe", 
 				"East Asia",
 				"Southeast Asia"
-			]
-		},
-		"storageAccountType": {
-			"type": "string",
-			"allowedValues": [
-				"Standard_LRS",
-				"Standard_GRS",
-				"Standard_ZRS"        
 			],
+			"metadata": { 
+         		"Description": "The region to deploy the resources into" 
+	     	},
+	     	"defaultValue":"West Europe"
 		},
 		"subscriptionId": {
-			"type": "string"
+			"type": "string",
+			"metadata": { 
+         		"Description": "The subscription Id to deploy the resources into" 
+	     	}
 		},
 		"virtualNetworkName": {
-		 	"type": "string"
+		 	"type": "string",
+			"metadata": { 
+         		"Description": "The name of the Virtual Network to Create" 
+	     	},
+	     	"defaultValue":"adVNET"
 		},
-		"virtualNetworkPrefix": {
-		 	"type": "string"
+		"virtualNetworkAddressRange": {
+		 	"type": "string",
+			"metadata": { 
+         		"Description": "The address range of the new VNET in CIDR format" 
+	     	},
+	     	"defaultValue":"10.0.0.0/16"
 		},
 		"adSubnetName": {
-		 	"type": "string"
+		 	"type": "string",
+		 	"metadata": { 
+         		"Description": "The address range of the subnet created in the new VNET" 
+	     	},
+		 	"defaultValue":"10.0.0.0/24"
 		},
 		"adSubnet": {
-		 	"type": "string"
+		 	"type": "string",
+		 	"metadata": { 
+         		"Description": "The name of the subnet created in the new VNET" 
+	     	},
+		 	"defaultValue":"adSubnet"
 		},
 		"adNicName": {
-		 	"type": "string"
+		 	"type": "string",
+		 	"metadata": { 
+         		"Description": "The name of the NIC attached to the new VM" 
+	     	},
+		 	"defaultValue":"adNic"
 		},
 		"adNicIPAddress": {
-		 	"type": "string"
+		 	"type": "string",
+		 	"metadata": { 
+         		"Description": "The IP address of the new AD VM" 
+	     	},
+		 	"defaultValue":"10.0.0.4"
 		},
 		"publicIPAddressType": {
 			"type": "string",
 			"allowedValues": [
 				"Dynamic",
 				"Static"
-			]
+			],
+			"metadata": { 
+         		"Description": "The type of public IP address used by the Load Balancer" 
+	     	},
+		 	"defaultValue":"Dynamic"
 		},
 		"adVMName": {
-			"type": "string"
+			"type": "string",
+			"metadata": { 
+         		"Description": "The name of the VM created" 
+	     	},
+		 	"defaultValue":"adarmtestDC"
 		},
 		"adminUsername": {
-			"type": "string"
+			"type": "string",
+			"metadata": { 
+         		"Description": "The name of the Administrator of the new VM and Domain" 
+	     	},
+		 	"defaultValue":"adarmtestDC"
 		},
 		"adminPassword": {
-			"type": "securestring"
+			"type": "securestring",
+			"metadata": { 
+         		"Description": "The password forthe Administrator account of the new VM and Domain" 
+	     	}
 		},
 		"adVMSize": {
 			"type": "string",
@@ -68,31 +122,74 @@
 				"Standard_A2",
 				"Standard_A3",
 				"Standard_A4"
-			]
+			],
+			"metadata": { 
+         		"Description": "The size of the VM Created" 
+	     	},
+	     	"defaultValue": "Standard_A1"
 		},
 		"adImageName": {
-			"type": "string"
+			"type": "string",
+			"metadata": { 
+         		"Description": "The name of the VM Image to create the AD VM from" 
+	     	},
+	     	"defaultValue": "a699494373c04fc0bc8f2bb1389d6106__Windows-Server-2012-Datacenter-201502.01-en.us-127GB.vhd"
 		},
 		"vmContainerName": {
-			"type":"string"
+			"type":"string",
+			"metadata": { 
+         		"Description": "The container name in the storage account where VM disks are stored" 
+	     	},
+	     	"defaultValue": "vhds"
 		},
 		"adAvailabilitySetName": {
-			"type":"string"
+			"type":"string",
+			"metadata": { 
+         		"Description": "The name of the availability set that the AD VM is created in" 
+	     	},
+			"defaultValue":"adAvailabiltySet"
 		},
 		"domainName":{
-			"type":"string"
+			"type":"string",
+			"metadata": { 
+         		"Description": "The FQDN of the AD Domain created " 
+	     	},
+			"defaultValue":"adarmtest.com"
 		},
 		"domainNetbiosName":{
-			"type":"string"
+			"type":"string",
+			"metadata": { 
+         		"Description": "The NetBIOS name of the AD Domain created " 
+	     	},
+			"defaultValue":"adarmtest"
 		},
 		"adModulesURL":{
-			"type":"string"
+			"type":"string",
+			"metadata": { 
+         		"Description": "The URL to the zip containing the DSC package that creates and installs AD" 
+	     	},
+			"defaultValue":"https://github.com/simongdavies/AzureRMActiveDirectory/raw/master/CreateADPDC.ps1.zip"
 		},
 		"adConfigurationFunction":{
-			"type":"string"
+			"type":"string",
+			"metadata": { 
+         		"Description": "The name of the DSC Function to run" 
+	     	},
+			"defaultValue":"CreateADPDC.ps1\\CreateADPDC"
 		},
 		"addnsName":{
-			"type":"string"
+			"type":"string",
+			"metadata": { 
+         		"Description": "The DNS prefix for the public IP address used by the Load Balancer" 
+	     	},
+			"defaultValue":"adarmtest"
+		},
+		"externalDNSServerAddress":{
+			"type":"string",
+			"metadata": { 
+         		"Description": "The DNS address of the public DNS Server used by the VNET" 
+	     	},
+	     	"defaultValue":"8.8.8.8"
 		}
 	},
 	"variables": {
@@ -145,11 +242,11 @@
 			"properties": {
 				"addressSpace": {
 				"addressPrefixes": [
-					"[parameters('virtualNetworkPrefix')]"
+					"[parameters('virtualNetworkAddressRange')]"
 				]
 				},
 				"dhcpOptions": {
-					"dnsServers": ["[parameters('adNicIPAddress')]","8.8.8.8"]
+					"dnsServers": ["[parameters('adNicIPAddress')]","[parameters('externalDNSServerAddress')]"]
 				},
 				"subnets": [
 					{

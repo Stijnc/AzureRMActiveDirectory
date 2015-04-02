@@ -59,6 +59,9 @@
 		},
 		"addnsName":{
 			"value":"adarmtest"
+		},
+		"externalDNSServerAddress":{
+			"value":"8.8.8.8"
 		}
     }
 }
