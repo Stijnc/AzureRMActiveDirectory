@@ -1,0 +1,66 @@
+{
+	"$schema": "http://schema.management.azure.com/schemas/2014-04-01-preview/deploymentTemplate.json",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"newStorageAccountName": {
+			"value": "adarmtest"
+		},
+		"deploymentLocation": {
+			"value": "West Europe"
+		},
+		"storageAccountType": {
+			"value": "Standard_LRS",
+		},
+		"scriptLocation": {
+			"value": "https://sdaviesms.blob.core.windows.net/scripts"
+		},
+		"virtualNetworkName": {
+		 	"value": "adVNET"
+		},
+		"virtualNetworkPrefix": {
+		 	"value": "10.0.0.0/16"
+		},
+		"adSubnetName": {
+		 	"value": "ADSubnet"
+		},
+		"adSubnet": {
+		 	"value": "10.0.0.0/24"
+		},
+		"adNicName": {
+		 	"value": "adNic"
+		},
+		"adNicIPAddress": {
+		 	"value": "10.0.0.4"
+		},
+        "publicIPAddressType": {
+            "value": "Dynamic"
+        },
+		"adVMName": {
+			"value": "adarmtestDC"
+		},
+		"adVMSize": {
+			"value": "Standard_A1"
+		},
+		"adImageName": {
+			"value": "a699494373c04fc0bc8f2bb1389d6106__Windows-Server-2012-Datacenter-201502.01-en.us-127GB.vhd"
+		},
+        "vmContainerName" :{
+        	"value": "vhds"
+        },
+        "adAvailabilitySetName": {
+			"value":"adAvailabiltySet"
+		},
+		"domainName":{
+			"value":"adarmtest.com"
+		},
+		"domainNetbiosName":{
+			"value":"adarmtest"
+		},
+		"adModulesURL": {
+			"value":"https://sdaviesms.blob.core.windows.net/windows-powershell-dsc/CreateADPDC.ps1.zip"
+		},
+		"adConfigurationFunction":{
+			"value":"CreateADPDC.ps1\\CreateADPDC"
+		}
+    }
+}
