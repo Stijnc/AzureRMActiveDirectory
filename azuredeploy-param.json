@@ -11,9 +11,6 @@
 		"storageAccountType": {
 			"value": "Standard_LRS",
 		},
-		"scriptLocation": {
-			"value": "https://sdaviesms.blob.core.windows.net/scripts"
-		},
 		"virtualNetworkName": {
 		 	"value": "adVNET"
 		},
@@ -57,10 +54,13 @@
 			"value":"adarmtest"
 		},
 		"adModulesURL": {
-			"value":"https://sdaviesms.blob.core.windows.net/windows-powershell-dsc/CreateADPDC.ps1.zip"
+			"value":"https://github.com/simongdavies/AzureRMActiveDirectory/raw/master/CreateADPDC.ps1.zip"
 		},
 		"adConfigurationFunction":{
 			"value":"CreateADPDC.ps1\\CreateADPDC"
+		},
+		"addnsName":{
+			"value":"adarmtest"
 		}
     }
 }
