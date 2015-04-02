@@ -58,16 +58,16 @@
 		"adSubnetName": {
 		 	"type": "string",
 		 	"metadata": { 
-         		"Description": "The address range of the subnet created in the new VNET" 
+         		"Description": "The name of the subnet created in the new VNET" 
 	     	},
-		 	"defaultValue":"10.0.0.0/24"
+		 	"defaultValue":"adSubnet"
 		},
 		"adSubnet": {
 		 	"type": "string",
 		 	"metadata": { 
-         		"Description": "The name of the subnet created in the new VNET" 
+         		"Description": "The address range of the subnet created in the new VNET" 
 	     	},
-		 	"defaultValue":"adSubnet"
+		 	"defaultValue":"10.0.0.0/24" 	
 		},
 		"adNicName": {
 		 	"type": "string",
@@ -106,7 +106,7 @@
 			"metadata": { 
          		"Description": "The name of the Administrator of the new VM and Domain" 
 	     	},
-		 	"defaultValue":"adarmtestDC"
+		 	"defaultValue":"adAdministrator"
 		},
 		"adminPassword": {
 			"type": "securestring",
