@@ -322,7 +322,7 @@
 							  "id" : "[variables('adIPConfigID')]"
 						  },
 						  "protocol": "tcp",
-						  "frontendPort": "[parameters('PDCRDPPort')]",
+						  "frontendPort": "[parameters('RDPPort')]",
 						  "backendPort": 3389,
 						  "enableFloatingIP": false
 					  }
@@ -417,7 +417,7 @@
 			]
 		},
 		{
-			"name": "VNetwithDNS",
+			"name": "UpdateVNetDNS",
 			"type": "Microsoft.Resources/deployments",
 			"apiVersion": "2015-01-01",
 			"dependsOn": [
@@ -438,6 +438,6 @@
 					"DNSServerAddress": {"value":"[parameters('adNicIPAddress')]"}
 				}
 			}
-		},
+		}
 	]
 }
