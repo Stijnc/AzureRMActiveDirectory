@@ -191,13 +191,6 @@
 			},
 			"defaultValue":"New DNS prefix"
 		},
-		"DNSServerAddress":{
-			"type":"string",
-			"metadata": {
-				"Description": "The DNS address of the first DNS Server used by the VNET"
-			},
-			"defaultValue":"8.8.8.8"
-		},
 		"RDPPort":{
 			"type":"int",
 			"metadata": {
@@ -218,15 +211,17 @@
 		"adlbID":"[resourceId('Microsoft.Network/loadBalancers',variables('adLBName'))]",
 		"adlbFEConfigID":"[concat(variables('adlbID'),'/frontendIPConfigurations/LBFE')]",
 		"adDataDisk":"ADDataDisk",
-		"adDataDiskSize":1000
+		"adDataDiskSize":1000,
+		"vnetTemplateUri":"https://raw.githubusercontent.com/simongdavies/AzureRMActiveDirectory/VNetLink/vnet.json",
+		"vnetwithDNSTemplateUri":"https://raw.githubusercontent.com/simongdavies/AzureRMActiveDirectory/VNetLink/vnet-with-dns-server.json"
 	},
 	"resources": [
 		{
-		  "type": "Microsoft.Storage/storageAccounts",
-		  "name": "[parameters('newStorageAccountName')]",
-		  "apiVersion": "2014-12-01-preview",
-		  "location": "[parameters('deploymentLocation')]",
-		  "properties": {
+			"type": "Microsoft.Storage/storageAccounts",
+			"name": "[parameters('newStorageAccountName')]",
+			"apiVersion": "2014-12-01-preview",
+			"location": "[parameters('deploymentLocation')]",
+			"properties": {
 			"accountType": "[parameters('storageAccountType')]"
 		  }
 		},
@@ -249,34 +244,29 @@
 			"location": "[parameters('deploymentLocation')]"
 		},
 		{
-			"name": "[parameters('virtualNetworkName')]",
-			"type": "Microsoft.Network/virtualNetworks",
-			"location": "[parameters('deploymentLocation')]",
-			"apiVersion": "2014-12-01-preview",
+			"name": "VNet",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2015-01-01",
 			"properties": {
-				"addressSpace": {
-				"addressPrefixes": [
-					"[parameters('virtualNetworkAddressRange')]"
-				]
+				"mode": "Incremental",
+				"templateLink": {
+				  "uri": "[variables('vnetTemplateUri')]",
+				  "contentVersion": "1.0.0.0"
 				},
-				"dhcpOptions": {
-					"dnsServers": ["[parameters('adNicIPAddress')]","[parameters('DNSServerAddress')]"]
-				},
-				"subnets": [
-					{
-						"name": "[parameters('adSubnetName')]",
-						"properties": {
-							"addressPrefix": "[parameters('adSubnet')]"
-						}
-					}
-				]
+				"parameters": {
+					"deploymentLocation": {"value":"[parameters('deploymentLocation')]"},
+					"virtualNetworkName": {"value":"[parameters('virtualNetworkName')]"},
+					"virtualNetworkAddressRange": {"value":"[parameters('virtualNetworkAddressRange')]"},
+					"subnetName": {"value":"[parameters('adSubnetName')]"},
+					"subnetRange": {"value":"[parameters('adSubnet')]"}
+				}
 			}
 		},
 		{
 		 "name": "[parameters('adNicName')]",
 		 "type": "Microsoft.Network/networkInterfaces",
 		 "location": "[parameters('deploymentLocation')]",
-		 "dependsOn": ["[parameters('virtualNetworkName')]"],
+		 "dependsOn": "VNet",
 		 "apiVersion": "2014-12-01-preview",
 		 "properties": {
 			 "ipConfigurations": [
@@ -431,6 +421,29 @@
 					}
 				}
 			]
-		}
+		},
+		{
+			"name": "VNetwithDNS",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2015-01-01",
+			"dependsOn": [
+				"[concat('Microsoft.Compute/virtualMachines/', parameters('adVMName'),'/extensions/CreateADForest')]"
+			],
+			"properties": {
+				"mode": "Incremental",
+				"templateLink": {
+				  "uri": "[variables('vnetwithDNSTemplateUri')]",
+				  "contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"deploymentLocation": {"value":"[parameters('deploymentLocation')]"},
+					"virtualNetworkName": {"value":"[parameters('virtualNetworkName')]"},
+					"virtualNetworkAddressRange": {"value":"[parameters('virtualNetworkAddressRange')]"},
+					"subnetName": {"value":"[parameters('adSubnetName')]"},
+					"subnetRange": {"value":"[parameters('adSubnet')]"},
+					"DNSServerAddress": {"value":"[parameters('adNicIPAddress')]"}
+				}
+			}
+		},
 	]
 }
