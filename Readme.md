@@ -19,7 +19,6 @@ Below are the parameters that the template expects
 | newStorageAccountName    | Name of the storage account to create    |
 | storageAccountType      | Type of the storage account <br> <ul>**Allowed Values**<li>Standard_LRS **(default)**</li><li>Standard_GRS</li><li>"Standard_ZRS"</li></ul> |
 | deploymentLocation  | Location where to deploy the resource <br><ul>**Allowed Values**<li>West US</li><li>East US</li><li>**West Europe (default)**</li><li>East Asia</li><li>Southeast Asia</li>|
-| subscriptionId | Your Azure Subscription Id |
 | virtualNetworkName | Name of the Virtual Network |
 | virtualNetworkAddressRange | Virtual Network Address Range <br> <ul><li>10.0.0.0/16 **(default)**</li></ul> |
 | adSubnetName | Name of Subnet for AD VM  |

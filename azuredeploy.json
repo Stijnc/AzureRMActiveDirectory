@@ -35,12 +35,6 @@
 			},
 			"defaultValue":"West Europe"
 		},
-		"subscriptionId": {
-			"type": "string",
-			"metadata": {
-				"Description": "The subscription Id to deploy the resources into"
-			}
-		},
 		"virtualNetworkName": {
 			"type": "string",
 			"metadata": {
@@ -203,7 +197,7 @@
 	"variables": {
 		"VnetID": "[resourceId('Microsoft.Network/virtualNetworks', parameters('virtualNetworkName'))]",
 		"adSubnetRef": "[concat(variables('VnetID'),'/subnets/',parameters('adSubnetName'))]",
-		"adSourceImageName": "[concat('/',parameters('subscriptionId'),'/services/images/',parameters('adImageName'))]",
+		"adSourceImageName": "[concat('/',subscription().subscriptionId,'/services/images/',parameters('adImageName'))]",
 		"adNicId" : "[resourceId('Microsoft.Network/networkInterfaces',parameters('adNicName'))]",
 		"adIPConfigID": "[concat(variables('adNicId'),'/ipConfigurations/ipconfig1')]",
 		"adLBName" : "adLoadBalancer",
