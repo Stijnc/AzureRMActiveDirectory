@@ -260,7 +260,7 @@
 		 "name": "[parameters('adNicName')]",
 		 "type": "Microsoft.Network/networkInterfaces",
 		 "location": "[parameters('deploymentLocation')]",
-		 "dependsOn": "Microsoft.Resources/deployments/VNet",
+		 "dependsOn": ["Microsoft.Resources/deployments/VNet"],
 		 "apiVersion": "2014-12-01-preview",
 		 "properties": {
 			 "ipConfigurations": [
