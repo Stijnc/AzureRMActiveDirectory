@@ -61,10 +61,10 @@
 				]
 				},
 				"dhcpOptions": {
-			      "dnsServers": [
-			        "[parameters('DNSServerAddress')]"
-			      ]
-			    },
+				  "dnsServers": [
+					"[parameters('DNSServerAddress')]"
+				  ]
+				},
 				"subnets": [
 					{
 						"name": "[parameters('subnetName')]",

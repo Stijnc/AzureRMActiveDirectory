@@ -3,5 +3,5 @@
 	"Description": "This template creates a new Azure VM, with a public IP address, load balancer and VNet, it configures the VM to be an AD DC for a new Forest",
 	"ShortDescription": "This template creates an Azure VM with AD",
 	"GithubUsername": "simongdavies",
-	"DateUpdated": "2015-04-10"
+	"DateUpdated": "2015-04-11"
 }
