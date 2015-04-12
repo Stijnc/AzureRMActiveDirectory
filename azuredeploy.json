@@ -169,7 +169,7 @@
 			"metadata": {
 				"Description": "The URL to the zip containing the DSC package that creates and installs AD"
 			},
-			"defaultValue":"https://raw.githubusercontent.com/simongdavies/AzureRMActiveDirectory/master/CreateADPDC.ps1.zip"
+			"defaultValue":"https://raw.githubusercontent.com/simongdavies/AzureRMActiveDirectory/VNetLink/CreateADPDC.ps1.zip"
 		},
 		"adConfigurationFunction":{
 			"type":"string",
