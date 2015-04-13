@@ -435,7 +435,7 @@
 					"virtualNetworkAddressRange": {"value":"[parameters('virtualNetworkAddressRange')]"},
 					"subnetName": {"value":"[parameters('adSubnetName')]"},
 					"subnetRange": {"value":"[parameters('adSubnet')]"},
-					"DNSServerAddress": {"value":"[parameters('adNicIPAddress')]"}
+					"DNSServerAddress": {"value":["[parameters('adNicIPAddress')]"]}
 				}
 			}
 		}
