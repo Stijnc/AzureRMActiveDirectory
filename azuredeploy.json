@@ -164,20 +164,6 @@
 			},
 			"defaultValue":"adarmtest"
 		},
-		"adModulesURL":{
-			"type":"string",
-			"metadata": {
-				"Description": "The URL to the zip containing the DSC package that creates and installs AD"
-			},
-			"defaultValue":"https://raw.githubusercontent.com/simongdavies/AzureRMActiveDirectory/VNetLink/CreateADPDC.ps1.zip"
-		},
-		"adConfigurationFunction":{
-			"type":"string",
-			"metadata": {
-				"Description": "The name of the DSC Configuration Function that configures the VM , creates the AD Domain etc."
-			},
-			"defaultValue":"CreateADPDC.ps1\\CreateADPDC"
-		},
 		"addnsName":{
 			"type":"string",
 			"metadata": {
@@ -191,6 +177,13 @@
 				"Description": "The public RDP port for the VM"
 			},
 			"defaultValue":3389
+		},
+		"AssetLocation" :{
+			"type":"string",
+			"metadata": {
+				"Description": "The location of resources such as templates and DSC modules that the script is dependent"
+			},
+			"defaultValue":"https://raw.githubusercontent.com/azurermtemplates/azurermtemplates/master/activedirectorynewdomain"
 		}
 
 	},
@@ -206,8 +199,11 @@
 		"adlbFEConfigID":"[concat(variables('adlbID'),'/frontendIPConfigurations/LBFE')]",
 		"adDataDisk":"ADDataDisk",
 		"adDataDiskSize":1000,
-		"vnetTemplateUri":"https://raw.githubusercontent.com/simongdavies/AzureRMActiveDirectory/VNetLink/vnet.json",
-		"vnetwithDNSTemplateUri":"https://raw.githubusercontent.com/simongdavies/AzureRMActiveDirectory/VNetLink/vnet-with-dns-server.json"
+		"vnetTemplateUri":"[concat(parameters('AssetLocation'),'/vnet.json')]",
+		"vnetwithDNSTemplateUri":"[concat(parameters('AssetLocation'),'/VNetLink/vnet-with-dns-server.json')]",
+		"adModulesURL":"[concat(parameters('AssetLocation'),'/CreateADPDC.ps1.zip')]",
+		"adConfigurationFunction":"CreateADPDC.ps1\\CreateADPDC"
+
 	},
 	"resources": [
 		{
@@ -396,8 +392,8 @@
 						"type": "DSC",
 						"typeHandlerVersion": "1.7",
 						"settings": {
-							"ModulesUrl": "[parameters('adModulesURL')]",
-							"ConfigurationFunction": "[parameters('adConfigurationFunction')]",
+							"ModulesUrl": "[variables('adModulesURL')]",
+							"ConfigurationFunction": "[variables('adConfigurationFunction')]",
 							"Properties": {
 								"DomainName": "[parameters('domainName')]",
 								"DomainNetBiosName":"[parameters('domainNetbiosName')]",

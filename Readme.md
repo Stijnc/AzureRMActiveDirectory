@@ -36,9 +36,8 @@ Below are the parameters that the template expects
 | adAvailabilitySetName | The name of the availability set that the AD VM is created in|
 | domainName | The FQDN of the AD Domain created |
 | domainNetbiosName | The NetBIOS name of the AD Domain created |
-| adModulesURL |The URL to the zip containing the DSC package that creates and installs AD <br> <ul> <li>**https://raw.githubusercontent.com/simongdavies/AzureRMActiveDirectory/master/CreateADPDC.ps1.zip (default)**</li></ul>|
-| adConfigurationFunction | The name of the DSC Configuration Function that configures the VM , creates the AD Domain etc.<br> <ul> <li>**CreateADPDC.ps1\\CreateADPDC(default)** </li></ul> |
 | addnsName | The DNS prefix for the public IP address used by the Load Balancer |
 | RDPPort | The public RDP port for the VM |
+|AssetLocation | The location of resources such as templates and DSC modules that the script is dependent <br> <ul><li> **https://raw.githubusercontent.com/azurermtemplates/azurermtemplates/master/activedirectorynewdomain (default)**</li></ul> |
 
 

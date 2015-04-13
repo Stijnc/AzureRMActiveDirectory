@@ -7,6 +7,12 @@
 		},
 		"addnsName":{
 			"value":"newadarmtest"
+		},
+		"AssetLocation" :{
+			"value":"https://raw.githubusercontent.com/simongdavies/AzureRMActiveDirectory/VNetLink/"
+		},
+		"deploymentLocation": {
+			"value":"East US"
 		}
 	}
 }
