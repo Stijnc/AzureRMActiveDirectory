@@ -38,6 +38,6 @@ Below are the parameters that the template expects
 | domainNetbiosName | The NetBIOS name of the AD Domain created |
 | addnsName | The DNS prefix for the public IP address used by the Load Balancer |
 | RDPPort | The public RDP port for the VM |
-|AssetLocation | The location of resources such as templates and DSC modules that the script is dependent <br> <ul><li> **https://raw.githubusercontent.com/azurermtemplates/azurermtemplates/master/activedirectorynewdomain (default)**</li></ul> |
+| AssetLocation | The location of resources such as templates and DSC modules that the script is dependent <br> <ul><li> **https://raw.githubusercontent.com/azurermtemplates/azurermtemplates/master/activedirectorynewdomain (default)**</li></ul> |
 
 
