@@ -3,16 +3,16 @@
 	"contentVersion": "1.0.0.0",
 	"parameters": {
 		"newStorageAccountName": {
-			"value": "newadarmtest"
+			"value": "newadarmtest424"
 		},
 		"addnsName":{
-			"value":"newadarmtest"
+			"value":"newadarmtest424"
 		},
 		"AssetLocation" :{
 			"value":"https://raw.githubusercontent.com/simongdavies/AzureRMActiveDirectory/VNetLink/"
 		},
 		"deploymentLocation": {
-			"value":"East US"
+			"value":"West Europe"
 		}
 	}
 }
