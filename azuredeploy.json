@@ -157,13 +157,6 @@
 			},
 			"defaultValue":"adarmtest.com"
 		},
-		"domainNetbiosName":{
-			"type":"string",
-			"metadata": {
-				"Description": "The NetBIOS name of the AD Domain created "
-			},
-			"defaultValue":"adarmtest"
-		},
 		"addnsName":{
 			"type":"string",
 			"metadata": {
@@ -399,7 +392,6 @@
 							"ConfigurationFunction": "[variables('adConfigurationFunction')]",
 							"Properties": {
 								"DomainName": "[parameters('domainName')]",
-								"DomainNetBiosName":"[parameters('domainNetbiosName')]",
 								"AdminCreds":{
 									"UserName": "[parameters('adminUserName')]",
 									"Password": "PrivateSettingsRef:AdminPassword"
