@@ -3,10 +3,10 @@
 	"contentVersion": "1.0.0.0",
 	"parameters": {
 		"newStorageAccountName": {
-			"value": "newadtest3"
+			"value": "newadtest4"
 		},
 		"addnsName":{
-			"value":"newadtest3"
+			"value":"newadtest4"
 		},
 		"AssetLocation" :{
 			"value":"https://raw.githubusercontent.com/simongdavies/AzureRMActiveDirectory/VNetLink/"
